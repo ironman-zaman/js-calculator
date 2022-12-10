@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .container{
+            max-width: 300px;
+            margin:40px auto;
+            margin: 40px auto;
+            background: #222222;
+            padding: 40px;
+            border-radius: 12px;
+        }
+        .grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap:10px;
+        }
+        button{
+            background-color: #5f6368;
+            border-radius: 10px;
+            color:#ffffff;
+            border:0px;
+            padding:10px;
+            cursor:pointer;
+            font-size: 20px;
+        }
+        button:hover{
+            background-color: #70757a;
+        }
+        .display{
+            background: #303134;
+            height: 40px;
+            box-sizing: border-box;
+            border: 1px solid #303134;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            color:#ffffff;
+            display: flex;
+            align-items: center;
+            padding:20px;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="display"></div>
+        <div class="grid">
+            <button>C</button>
+            <button>/</button>
+            <button>*</button>
+            <button>&#8592;</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>+</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>-</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>.</button>
+            <button>(</button>
+            <button>0</button>
+            <button>)</button>
+            <button>=</button>
+        </div>
+    </div>
+    <script>
+        var buttons = document.querySelectorAll(".grid button");
+        var display = document.querySelector(".display");
+        buttons.forEach(function(button){
+            
+            button.addEventListener("click",function(e){
+                if (e.target.innerText == "=") {
+                    try {
+                        display.innerText = eval(display.innerText);
+                    } catch {
+                        display.innerText = "Invalid";
+                    }
+                }
+                else if(e.target.innerText == "C"){
+                    display.innerText = "";
+                }
+                else if(e.target.innerText == "←"){
+                    display.innerText = display.innerText.slice(0,-1);
+                }
+                else{
+                    display.innerText += e.target.innerText;
+                }
+                
+            })
+        });
+    </script>
+</body>
+</html>
